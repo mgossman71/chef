@@ -1,0 +1,8 @@
+docker1  Run List:    role[centos-base], recipe[lab-linux::firewall-disable], role[docker]
+fedora62  Run List:    role[centos-base]
+http-repo  Run List:    role[centos-base], recipe[lab-linux::firewall-disable], recipe[mesos-base::apache], recipe[lab-linux::yum-utils]
+mesos-master  Run List:    role[centos-base], recipe[mesos-base]
+mesos-master1  Run List:    role[centos-base], recipe[mesos-base]
+mesos-master2  Run List:    role[centos-base], recipe[mesos-base]
+mesos1  Run List:    role[centos-base], recipe[mesos-base]
+mesos2  Run List:    role[centos-base], recipe[mesos-base]
