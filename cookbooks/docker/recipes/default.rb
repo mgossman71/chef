@@ -25,3 +25,9 @@ end
 service 'firewalld' do
   action [ :disable, :stop ]
 end
+
+
+# mkdir /mnt/Movies
+#   36  mkdir /mnt/TV-Shows
+#   37  mkdir /mnt/TV-Shows1
+#   38  mkdir /mnt/sabnzb
