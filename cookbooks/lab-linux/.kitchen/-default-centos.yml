@@ -1,0 +1,9 @@
+---
+username: kitchen
+ssh_key: "/Volumes/linux-tools/chef/cookbooks/lab-linux/.kitchen/docker_id_rsa"
+image_id: 2faa8071639a
+container_id: 7c57f453f67bca06c08d999a412f6c43321f642f38cbae57f546112600e7ed9c
+hostname: localhost
+port: 32768
+last_action: converge
+last_error: 

@@ -1,0 +1,15 @@
+driver:
+   name: docker
+   binary: /usr/local/bin/docker
+   use_sudo: false
+
+provisioner:
+   name: chef_zero
+
+platforms:
+   - name: centos
+
+suites:
+  - name: _default
+    run_list:
+      - recipe[lab-linux::open-vm-tools]
