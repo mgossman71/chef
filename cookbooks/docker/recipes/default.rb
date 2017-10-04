@@ -13,7 +13,7 @@
 #   baseurl 'https://download.docker.com/linux/centos/docker-ce.repo'
 # end
 
-yum_package %w(docker-ce) do
+yum_package %w(docker-ce git java-1.8.0-openjdk.i686) do
   flush_cache [ :before ]
   action [ :install ]
 end
