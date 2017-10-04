@@ -26,10 +26,11 @@ service 'firewalld' do
   action [ :disable, :stop ]
 end
 
-directory %w('/mnt/Movies' '/mnt/TV-Shows' '/mnt/TV-Shows1' '/mnt/sabnzb') do
-  owner 'root'
-  group 'root'
-  action :create
+%w[ /mnt/Movies /mnt/TV-Shows /mnt/TV-Shows1 /mnt/sabnzb ].each do |path|
+  directory path do
+    owner 'root'
+    group 'root'
+  end
 end
 
 mount '/mnt/Movies' do
