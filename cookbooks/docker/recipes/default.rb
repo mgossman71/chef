@@ -26,8 +26,36 @@ service 'firewalld' do
   action [ :disable, :stop ]
 end
 
+directory %w('/mnt/Movies' '/mnt/TV-Shows' '/mnt/TV-Shows1' '/mnt/sabnzb') do
+  owner 'root'
+  group 'root'
+  action :create
+end
 
-# mkdir /mnt/Movies
-#   36  mkdir /mnt/TV-Shows
-#   37  mkdir /mnt/TV-Shows1
-#   38  mkdir /mnt/sabnzb
+mount '/mnt/Movies' do
+  device 'synology:/volume1/Movies'
+  fstype 'nfs'
+  options 'rw'
+  action [:mount, :enable]
+end
+
+mount '/mnt/TV-Shows' do
+  device 'synology:/volume1/TV-Shows'
+  fstype 'nfs'
+  options 'rw'
+  action [:mount, :enable]
+end
+
+mount '/mnt/TV-Shows1' do
+  device 'synology:/volume1/TV-Shows1'
+  fstype 'nfs'
+  options 'rw'
+  action [:mount, :enable]
+end
+
+mount '/mnt/sabnzb' do
+  device 'synology:/volume1/sabnzb'
+  fstype 'nfs'
+  options 'rw'
+  action [:mount, :enable]
+end
