@@ -1,0 +1,78 @@
+1  yum update -y
+    2  shutdown now -h
+    3  top
+    4  exit
+    5  chef-client
+    6  yum clean all
+    7  chef-client
+    8  etcdctl mkdir /kube-centos/network
+    9  etcdctl mk /kube-centos/network/config "{ \"Network\": \"172.30.0.0/16\", \"SubnetLen\": 24, \"Backend\": { \"Type\": \"vxlan\" } }"
+   10  kubectl service
+   11  kubectl
+   12  kubectl get services
+   13  reboot
+   14  kubectl get services
+   15  chef-client
+   16  touch /tmp/service-restart.flg
+   17  chef-client
+   18  kubectl get services
+   19  kubectl get nodes
+   20  kubectl get services
+   21  kubectl get nodes
+   22  kubectl get services
+   23  pwd
+   24  touch jenkins.yml
+   25  vi jenkins.yml
+   26  kubectl create -f jenkins.yml
+   27  kubectl get pods
+   28  kubectl config view
+   29  kubectl get pods
+   30  kubectl explain pods
+   31  kubectl explain pods jenkins
+   32  kubectl explain pod jenkins
+   33  kubectl explain pods, jenkins
+   34  kubectl get pods
+   35  kubectl explain pods, jenkinskubectl get pods -o wide
+   36  kubectl get pods -o wide
+   37  kubectl get pods --all-namespaces
+   38  kubectl get services
+   39  ifconfig
+   40  kubectl get services
+   41  kubectl get pods
+   42  kubectl explain pod jenkins
+   43  history
+   44  kubectl get services
+   45  kubectl get pods
+   46   kubectl get nodes
+   47  kubectl run hello-world --replicas=5 --labels="run=load-balancer-example" --image=gcr.io/google-samples/node-hello:1.0  --port=8080
+   48  kubectl get deployments hello-world
+   49  kubectl describe deployments hello-world
+   50  kubectl get replicasets
+   51  kubectl describe replicasets
+   52  kubectl expose deployment hello-world --type=LoadBalancer --name=my-service
+   53  kubectl get services my-service
+   54  kubectl get services
+   55  kubectl get services my-service
+   56  kubectl get services
+   57  kubectl describe services my-service
+   58  kubectl get services
+   59  kubectl describe services my-service
+   60  kubectl get deployments
+   61  kubectl delete deployments hello-world
+   62  kubectl describe deployments hello-world
+   63  kubectl get pods
+   64  kubectl delete pods jenkins
+   65  kubectl get replicasets
+   66  kubectl get services my-service
+   67  kubectl delete services my-service
+   68  kubectl get services
+   69  history
+   70  kubectl run hello-world --replicas=1 --labels="run=load-balancer-example" --image=gcr.io/google-samples/node-hello:1.0  --port=8080
+   71  kubectl get services
+   72  kubectl get deployments hello-world
+   73  kubectl describe deployments hello-world
+   74  kubectl get replicasets
+   75  kubectl describe replicasets
+   76  kubectl expose deployment hello-world --type=LoadBalancer --name=my-service
+   77  kubectl get services
+   78  history
