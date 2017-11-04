@@ -11,7 +11,8 @@ KUBELET_PORT="--kubelet-port=10250"
 KUBE_ETCD_SERVERS="--etcd-servers=http://k8s001:2379"
 
 # Address range to use for services
-KUBE_SERVICE_ADDRESSES="--service-cluster-ip-range=10.10.0.0/24"
+# KUBE_SERVICE_ADDRESSES="--service-cluster-ip-range=10.10.0.0/24"
+KUBE_SERVICE_ADDRESSES="--service-cluster-ip-range=10.254.0.0/16"
 
 # Add your own!
 KUBE_API_ARGS=""
