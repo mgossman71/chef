@@ -4,6 +4,14 @@
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
 
+cookbook_file '/root/k8s-svc-restart.sh' do
+  source 'k8s-svc-restart.sh'
+  mode '0744'
+  owner 'root'
+  group 'root'
+  action :create
+end
+
 cookbook_file '/etc/kubernetes/kubelet' do
   source 'kubelet'
   mode '0644'

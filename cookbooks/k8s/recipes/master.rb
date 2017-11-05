@@ -4,6 +4,14 @@
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
 
+cookbook_file '/root/k8s-svc-restart.sh' do
+  source 'k8s-svc-restart.sh'
+  mode '0744'
+  owner 'root'
+  group 'root'
+  action :create
+end
+
 cookbook_file '/etc/etcd/etcd.conf' do
   source 'etcd.conf'
   mode '0644'
@@ -18,15 +26,24 @@ cookbook_file '/etc/kubernetes/apiserver' do
   owner 'root'
   group 'root'
   action :create
+  notifies :start, 'service[etcd]', :immediately
+  notifies :run, 'execute[etcdctl-mkdir]', :immediately
 end
 
 service "etcd" do
-  action [:start]
+  action [:nothing]
 end
 
-# Manually run
-# etcdctl mkdir /kube-centos/network
-# etcdctl mk /kube-centos/network/config "{ \"Network\": \"172.30.0.0/16\", \"SubnetLen\": 24, \"Backend\": { \"Type\": \"vxlan\" } }"
+execute 'etcdctl-mkdir' do
+  command 'etcdctl mkdir /kube-centos/network'
+  action [:nothing]
+  notifies :run, 'execute[etcdctl-mk]', :immediately
+end
+
+execute 'etcdctl-mk' do
+  command 'etcdctl mk /kube-centos/network/config "{ \"Network\": \"172.30.0.0/16\", \"SubnetLen\": 24, \"Backend\": { \"Type\": \"vxlan\" } }"'
+  action [:nothing]
+end
 
 cookbook_file '/etc/sysconfig/flanneld' do
   source 'flanneld'
@@ -65,12 +82,3 @@ execute 'rmflag' do
   command 'rm /tmp/service-restart.flg'
   only_if { File.exist?("/tmp/service-restart.flg") }
 end
-
-
-# execute 'etcdctl-mkdir' do
-#   command 'etcdctl mkdir /kube-centos/network'
-# end
-#
-# execute 'etcdctl-mk' do
-#   command 'etcdctl mk /kube-centos/network/config "{ \"Network\": \"172.30.0.0/16\", \"SubnetLen\": 24, \"Backend\": { \"Type\": \"vxlan\" } }"'
-# end
