@@ -27,7 +27,7 @@ cookbook_file '/etc/kubernetes/apiserver' do
   group 'root'
   action :create
   notifies :start, 'service[etcd]', :immediately
-  notifies :run, 'execute[etcdctl-mkdir]', :immediately
+  # notifies :run, 'execute[etcdctl-mkdir]', :immediately
 end
 
 service "etcd" do
