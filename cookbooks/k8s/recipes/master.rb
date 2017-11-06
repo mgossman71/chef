@@ -26,24 +26,29 @@ cookbook_file '/etc/kubernetes/apiserver' do
   owner 'root'
   group 'root'
   action :create
-  notifies :start, 'service[etcd]', :immediately
+  # notifies :start, 'service[etcd]', :immediately
   # notifies :run, 'execute[etcdctl-mkdir]', :immediately
 end
 
 service "etcd" do
-  action [:nothing]
+  action [:start]
 end
 
-execute 'etcdctl-mkdir' do
-  command 'etcdctl mkdir /kube-centos/network'
-  action [:nothing]
-  notifies :run, 'execute[etcdctl-mk]', :immediately
-end
+# execute 'etcdctl-mkdir' do
+#   command 'etcdctl mkdir /kube-centos/network'
+#   action [:nothing]
+#   notifies :run, 'execute[etcdctl-mk]', :immediately
+# end
+#
+# execute 'etcdctl-mk' do
+#   command 'etcdctl mk /kube-centos/network/config "{ \"Network\": \"172.30.0.0/16\", \"SubnetLen\": 24, \"Backend\": { \"Type\": \"vxlan\" } }"'
+#   action [:nothing]
+# end
 
-execute 'etcdctl-mk' do
-  command 'etcdctl mk /kube-centos/network/config "{ \"Network\": \"172.30.0.0/16\", \"SubnetLen\": 24, \"Backend\": { \"Type\": \"vxlan\" } }"'
-  action [:nothing]
-end
+########################################################################
+# etcdctl mkdir /kube-centos/network
+# etcdctl mk /kube-centos/network/config "{ \"Network\": \"172.30.0.0/16\", \"SubnetLen\": 24, \"Backend\": { \"Type\": \"vxlan\" } }"
+########################################################################
 
 cookbook_file '/etc/sysconfig/flanneld' do
   source 'flanneld'
