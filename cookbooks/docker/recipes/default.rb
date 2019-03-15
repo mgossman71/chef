@@ -12,6 +12,20 @@
 #   description "docker-ce repo"
 #   baseurl 'https://download.docker.com/linux/centos/docker-ce.repo'
 # end
+cookbook_file '/usr/lib/systemd/system/docker.service' do
+  source 'docker.service'
+  owner 'root'
+  group 'root'
+  mode '644'
+  action :create
+  notifies :stop, 'service[docker]', :immediately
+  notifies :run, 'execute[systemctl_daemon_reload]', :immediately
+  notifies :start, 'service[docker]', :immediately
+end
+
+execute 'systemctl_daemon_reload' do
+  command 'systemctl daemon-reload'
+end
 
 yum_package %w(docker-ce git java-1.8.0-openjdk.i686) do
   flush_cache [ :before ]
