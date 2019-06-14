@@ -10,3 +10,16 @@ mount '/linux-tools' do
   options 'rw'
   action [:mount, :enable]
 end
+
+directory "/web" do
+  owner 'root'
+  group 'root'
+  action :create
+end
+
+mount '/web' do
+  device 'synology:/volume1/web'
+  fstype 'nfs'
+  options 'rw'
+  action [:mount, :enable]
+end
